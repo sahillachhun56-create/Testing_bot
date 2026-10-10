@@ -2,7 +2,7 @@ import requests
 import telebot
 
 # अपना नया टेलीग्राम बोट टोकन यहाँ डालें
-TOKEN = "8917359221:AAEmYHnxg1tf7tCxh4A1eGbpPeqMEWUPJCY"
+TOKEN = "8917359221:AAHUXPvmp1kBZ5PpKHJE29P8abKtgc2Uv6E"
 bot = telebot.TeleBot(TOKEN)
 
 
@@ -26,10 +26,29 @@ def handle_like(message):
     region = args[1]
     uid = args[2]
 
-    # अपने Render वाले वेब API का लिंक
+    # अपने Render वाले API का सही लिंक
     api_url = f"https://api-bot-va1f.onrender.com/like?region={region}&uid={uid}"
+
+    # रिक्वेस्ट भेजना
     resp = requests.get(api_url)
-    data = resp.json()
+
+    # चेक करना कि API सही रिस्पॉन्स (200 OK) दे रही है या नहीं
+    if resp.status_code != 200:
+      bot.reply_to(
+          message,
+          f"❌ **API Error:** Server responded with status code {resp.status_code}",
+      )
+      return
+
+    try:
+      data = resp.json()
+    except Exception:
+      bot.reply_to(
+          message,
+          "❌ **API Error:** API JSON रिस्पॉन्स नहीं दे रही है। कृपया Render पर"
+          " API Logs चेक करें।",
+      )
+      return
 
     # API से डेटा निकालना
     name = data.get("nickname") or data.get("name") or f"Player_{uid[-4:]}"
@@ -61,4 +80,5 @@ def handle_like(message):
 if __name__ == "__main__":
   print("Bot is running 24/7...")
   bot.infinity_polling()
+    
   
