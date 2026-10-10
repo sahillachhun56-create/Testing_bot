@@ -387,7 +387,6 @@ def main():
     print("   → Admin users: anywhere (DM + groups), unlimited likes")
     app.run_polling()
 
-import os
 
 if __name__ == '__main__':
     threading.Thread(target=lambda: app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000))), daemon=True).start()
