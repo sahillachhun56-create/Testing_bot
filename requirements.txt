@@ -1,5 +1,6 @@
+flask
+gunicorn
 requests
 python-telegram-bot
 apscheduler
 aiohttp
-gunicorn
