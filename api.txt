@@ -1,1 +1,1 @@
-https://yourdoman/like?uid=14307670967&region=IND&key=Anurag
+https://api-bot-va1f.onrender.com/like?uid={uid}&region={region}&key=Anurag
