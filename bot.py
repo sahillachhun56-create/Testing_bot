@@ -2,7 +2,7 @@ import requests
 import telebot
 
 # अपना नया टेलीग्राम बोट टोकन यहाँ डालें
-TOKEN = "YOUR_NEW_BOT_TOKEN_HERE"
+TOKEN = "8917359221:AAEmYHnxg1tf7tCxh4A1eGbpPeqMEWUPJCY"
 bot = telebot.TeleBot(TOKEN)
 
 
