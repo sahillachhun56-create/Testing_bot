@@ -2,7 +2,7 @@ import requests
 import telebot
 
 # अपना नया टेलीग्राम बोट टोकन यहाँ डालें
-TOKEN = "8917359221:AAHUXPvmp1kBZ5PpKHJE29P8abKtgc2Uv6E"
+TOKEN = "8917359221:AAFjeB-y849GIFjraA5wWpu8caiuOqjSTYk"
 bot = telebot.TeleBot(TOKEN)
 
 
@@ -11,32 +11,27 @@ def handle_like(message):
   try:
     args = message.text.split()
     if len(args) < 3:
-      error_text = """
-❌ **गलत फॉर्मेट!**
-
-सही तरीका इस्तेमाल करें:
-`/like [Region] [UID]`
-
-*उदाहरण:* 
-`/like ind 1772894853`
-"""
-      bot.reply_to(message, error_text, parse_mode="Markdown")
+      error_text = (
+          "❌ गलत फॉर्मेट!\n\nसही तरीका इस्तेमाल करें:\n/like [Region]"
+          " [UID]\n\nउदाहरण:\n/like ind 1772894853"
+      )
+      bot.reply_to(message, error_text)
       return
 
     region = args[1]
     uid = args[2]
 
-    # अपने Render वाले API का सही लिंक
+    # अपने Render वाले API का लिंक
     api_url = f"https://api-bot-va1f.onrender.com/like?region={region}&uid={uid}"
 
     # रिक्वेस्ट भेजना
     resp = requests.get(api_url)
 
-    # चेक करना कि API सही रिस्पॉन्स (200 OK) दे रही है या नहीं
     if resp.status_code != 200:
       bot.reply_to(
           message,
-          f"❌ **API Error:** Server responded with status code {resp.status_code}",
+          f"❌ API Error: सर्वर व्यस्त है या रिस्पॉन्स कोड {resp.status_code}"
+          " मिला। कृपया दोबारा ट्राई करें।",
       )
       return
 
@@ -45,8 +40,8 @@ def handle_like(message):
     except Exception:
       bot.reply_to(
           message,
-          "❌ **API Error:** API JSON रिस्पॉन्स नहीं दे रही है। कृपया Render पर"
-          " API Logs चेक करें।",
+          "❌ API Error: सर्वर से सही डेटा नहीं मिला। कृपया Render लॉग्स चेक"
+          " करें।",
       )
       return
 
@@ -57,21 +52,21 @@ def handle_like(message):
     )
     current_likes = data.get("likes") or "0"
 
-    # टेलीग्राम के लिए सीधा और सही सक्सेस मैसेज
+    # सादा टेक्स्ट मैसेज (बिنا किसी Markdown एरर के)
     response_text = f"""
-✅ **LIKES SENT SUCCESSFULLY**
+✅ LIKES SENT SUCCESSFULLY
 ----------------------------------------
-👤 **NAME** : {name}
-🆔 **UID** : {uid}
-🌐 **SERVER** : {region.upper()}
+👤 NAME : {name}
+🆔 UID : {uid}
+🌐 SERVER : {region.upper()}
 ----------------------------------------
-📊 **STATUS** : {likes_added} Likes Added
-❤️ **TOTAL LIKES** : {current_likes}
+📊 STATUS : {likes_added} Likes Added
+❤️ TOTAL LIKES : {current_likes}
 ----------------------------------------
-👑 **ADMIN ID** : 8380823727
-🚀 **OWNER** : @Momshad_00
+👑 ADMIN ID : 8380823727
+🚀 OWNER : @Momshad_00
 """
-    bot.reply_to(message, response_text, parse_mode="Markdown")
+    bot.reply_to(message, response_text)
 
   except Exception as e:
     bot.reply_to(message, f"❌ Error: {str(e)}")
@@ -80,5 +75,6 @@ def handle_like(message):
 if __name__ == "__main__":
   print("Bot is running 24/7...")
   bot.infinity_polling()
+  
     
   
