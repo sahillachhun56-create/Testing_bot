@@ -9,6 +9,10 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 from telegram.request import HTTPXRequest
 
+app = Flask(__name__)
+@app.route('/')
+def home():
+    return "API and Bot Server is Live!" 
 # ============ CONFIGURATION ============
 API_URL = "https://api-bot-va1f.onrender.com/like"
 ENCODED_KEY = "QW51cmFn="
