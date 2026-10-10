@@ -1,12 +1,34 @@
+import os
+from threading import Thread
+from flask import Flask
 import requests
 import telebot
 
-# अपना नया टेलीग्राम बोट टोकन यहाँ डालें
-TOKEN = "8917359221:AAFjeB-y849GIFjraA5wWpu8caiuOqjSTYk"
+# Port Binding for Render
+app = Flask("")
+
+
+@app.route("/")
+def home():
+  return "Telegram Bot is Alive!"
+
+
+def run():
+  port = int(os.environ.get("PORT", 5000))
+  app.run(host="0.0.0.0", port=port)
+
+
+def keep_alive():
+  t = Thread(target=run)
+  t.start()
+
+
+# टेलीग्राम बोट टोकन
+TOKEN = "8917359221:AAHJbJR-ifKaUBOq-nNmyR_wR9h_thJq860"
 bot = telebot.TeleBot(TOKEN)
 
 
-@bot.message_handler(commands=['like'])
+@bot.message_handler(commands=["like"])
 def handle_like(message):
   try:
     args = message.text.split()
@@ -21,38 +43,28 @@ def handle_like(message):
     region = args[1]
     uid = args[2]
 
-    # अपने Render वाले API का लिंक
     api_url = f"https://api-bot-va1f.onrender.com/like?region={region}&uid={uid}"
-
-    # रिक्वेस्ट भेजना
     resp = requests.get(api_url)
 
     if resp.status_code != 200:
       bot.reply_to(
           message,
-          f"❌ API Error: सर्वर व्यस्त है या रिस्पॉन्स कोड {resp.status_code}"
-          " मिला। कृपया दोबारा ट्राई करें।",
+          f"❌ API Error: सर्वर व्यस्त है (Status {resp.status_code})।",
       )
       return
 
     try:
       data = resp.json()
     except Exception:
-      bot.reply_to(
-          message,
-          "❌ API Error: सर्वर से सही डेटा नहीं मिला। कृपया Render लॉग्स चेक"
-          " करें।",
-      )
+      bot.reply_to(message, "❌ API Error: सर्वर से सही JSON नहीं मिला।")
       return
 
-    # API से डेटा निकालना
-    name = data.get("nickname") or data.get("name") or f"Player_{uid[-4:]}"
+    name = data.get("nickname") or data.get("name") or "N/A"
     likes_added = (
         data.get("likes_added") or data.get("count") or data.get("added") or 10
     )
-    current_likes = data.get("likes") or "0"
+    current_likes = data.get("likes") or "N/A"
 
-    # सादा टेक्स्ट मैसेज (बिنا किसी Markdown एरर के)
     response_text = f"""
 ✅ LIKES SENT SUCCESSFULLY
 ----------------------------------------
@@ -73,8 +85,10 @@ def handle_like(message):
 
 
 if __name__ == "__main__":
+  keep_alive()  # Render Port Fix
   print("Bot is running 24/7...")
   bot.infinity_polling()
+  
   
     
   
