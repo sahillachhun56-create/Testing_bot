@@ -385,5 +385,9 @@ def main():
     print("   → Admin users: anywhere (DM + groups), unlimited likes")
     app.run_polling()
 
-if __name__ == "__main__":
-    main()
+import os
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    
