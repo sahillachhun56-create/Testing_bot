@@ -2,6 +2,8 @@ import json
 import base64
 import aiohttp
 import asyncio
+from flask import Flask
+import threading
 from datetime import datetime, date, time
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
@@ -388,6 +390,7 @@ def main():
 import os
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    threading.Thread(target=lambda: app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000))), daemon=True).start()
+    main()
+    
     
