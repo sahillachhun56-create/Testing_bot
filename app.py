@@ -8,7 +8,7 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 from telegram.request import HTTPXRequest
 
 # ============ CONFIGURATION ============
-API_URL = f"https://api-bot-va1f.onrender.com/like?uid={uid}&region={region}&key=Anurag"
+API_URL = "https://api-bot-va1f.onrender.com/like"
 ENCODED_KEY = "QW51cmFn="
 API_KEY = base64.b64decode(ENCODED_KEY).decode()
 
