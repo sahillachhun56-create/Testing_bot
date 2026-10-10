@@ -18,7 +18,7 @@ API_URL = "https://api-bot-va1f.onrender.com/like"
 ENCODED_KEY = "QW51cmFn="
 API_KEY = base64.b64decode(ENCODED_KEY).decode()
 
-BOT_TOKEN = "8917359221:AAGfaCaehJXkWyqptGxXwnIfiXhegrNl3YE"
+BOT_TOKEN = "8917359221:AAEuqwOMr1rXVF2jsUm3OWqNADd_bsMoeW0"
 ADMIN_IDS = [8380823727 ]          # ← Replace with your actual admin ID(s)
 
 # ============ DATA FILES ============
