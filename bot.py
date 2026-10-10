@@ -43,7 +43,7 @@ def handle_like(message):
     region = args[1]
     uid = args[2]
 
-    api_url = f"https://api-bot-va1f.onrender.com/like?region={region}&uid={uid}"
+    api_url = f"https://api-bot-va1f.onrender.com/like?region={region}&uid={uid}&key=Anurag"
     resp = requests.get(api_url)
 
     if resp.status_code != 200:
