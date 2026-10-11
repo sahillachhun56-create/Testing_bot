@@ -15,7 +15,7 @@ app = Flask(__name__)
 def home():
     return "API and Bot Server is Live!" 
 # ============ CONFIGURATION ============
-API_URL = "https://api-bot-va1f.onrender.com"
+API_URL = "https://api-bot-va1f.onrender.com/"
 ENCODED_KEY = "QW51cmFn="
 API_KEY = "Anurag"
 
