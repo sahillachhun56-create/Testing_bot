@@ -275,7 +275,7 @@ async def like_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"📅 *API daily limit:* {api_used}/{api_limit}\n"
             f"🟢 *API remaining:* {api_rem}\n\n"
             f"😔 *Could not send like to {player}*\n\n"
-         f" "💞 * By Momshad * " )
+            f"💞 * By Momshad * " )
     else:
         result = f"❓ *Unknown API response*\nStatus code: {status}\nPlease contact the bot admin."
     
