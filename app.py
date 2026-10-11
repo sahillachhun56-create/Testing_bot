@@ -261,7 +261,7 @@ async def like_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"📊 *Total:* {before} → {after}\n\n"
             f"📅 *Your usage:* {user_used}/{daily_limit if not is_admin(user_id) else '∞'}\n"
             f"🎉 *Success!*\n\n"
-            f""💞 * By Momshad * "
+            f"💞 * By Momshad * "
         )
     elif status == 2:
         result = (
