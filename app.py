@@ -147,7 +147,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "📌 *Example:* `/like IND 14160011100`\n"
         f"🔥 Your daily limit: `{daily_limit}` likes\n"
         "🌍 *Any region code works* (e.g., IND, USA, GER, etc.)\n"
-        "💘 * By Anurag Singh * "
+        "💞 * By Momshad * "
         "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
     )
     await reply(update, msg)
@@ -261,7 +261,7 @@ async def like_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"📊 *Total:* {before} → {after}\n\n"
             f"📅 *Your usage:* {user_used}/{daily_limit if not is_admin(user_id) else '∞'}\n"
             f"🎉 *Success!*\n\n"
-            f"💘 * By Anurag Singh * "
+            f""💞 * By Momshad * "
         )
     elif status == 2:
         result = (
@@ -275,7 +275,7 @@ async def like_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"📅 *API daily limit:* {api_used}/{api_limit}\n"
             f"🟢 *API remaining:* {api_rem}\n\n"
             f"😔 *Could not send like to {player}*\n\n"
-         f" 💘 * By Anurag Singh * " )
+         f" "💞 * By Momshad * " )
     else:
         result = f"❓ *Unknown API response*\nStatus code: {status}\nPlease contact the bot admin."
     
