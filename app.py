@@ -19,7 +19,7 @@ API_URL = "https://api-bot-teoo.onrender.com/"
 ENCODED_KEY = "QW51cmFn="
 API_KEY = "Anurag"
 
-BOT_TOKEN = "8917359221:AAEuqwOMr1rXVF2jsUm3OWqNADd_bsMoeW0"
+BOT_TOKEN = "8917359221:AAG_1_0Tr9Iwyy5_PLOlCHPMqygbLBd3uFA"
 ADMIN_IDS = [8380823727 ]          # ← Replace with your actual admin ID(s)
 
 # ============ DATA FILES ============
