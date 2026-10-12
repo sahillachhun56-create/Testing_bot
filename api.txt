@@ -1,1 +1,1 @@
-https://api-bot-1-3yx1.onrender.com/like?uid={uid}&region={region}&key=Anurag
+https://api-bot-teoo.onrender.com/like?uid={uid}&region={region}&key=Anurag
